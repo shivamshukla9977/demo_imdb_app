@@ -1,0 +1,2 @@
+class ImbdController < ApplicationController
+end
