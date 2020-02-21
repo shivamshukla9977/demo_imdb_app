@@ -1,0 +1,21 @@
+<table border = "1">
+	<thead>
+		<th>Movie_id</th>
+		<th>Title</th>
+		<th>Year</th>
+		<th>Release Date</th>
+		<th>Description</th>
+	</thead>
+
+	<tbody>
+		<% Movie.all.each do |movie| %>
+		<tr>
+			<td><%= movie.id %></td>
+			<td><%= movie.title %></td>
+			<td><%= movie.year %></td>
+			<td><%= movie.release_date %></td>
+			<td><%= movie.description %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

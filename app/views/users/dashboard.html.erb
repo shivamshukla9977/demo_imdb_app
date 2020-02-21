@@ -1,0 +1,9 @@
+<h1>Welcome User</h1>
+<% if logged_in? %>
+  <h1>You are Logged In, <%= current_user.name %></h1>
+  <div>
+    <%= link_to "Logout", session_path(:current_user), method: :delete %>
+  </div>
+<% else %>
+  <% redirect_to root_path %>
+<% end %>

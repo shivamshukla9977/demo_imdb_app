@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resource :users do
+    member do
+      get :dashboard
+      post :profile
+    end
+  end
+
+  resources :sessions, only: [:new, :create, :destroy]
+   
+  resources :movies
+
+  root 'welcomes#index'
 end

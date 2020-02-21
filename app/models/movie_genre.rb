@@ -1,6 +1,6 @@
 class MovieGenre < ApplicationRecord
-  belongs_to :movie
+  belongs_to :movies
   belongs_to :genre
 
-  has_may :genre
+  has_many :genre
 end

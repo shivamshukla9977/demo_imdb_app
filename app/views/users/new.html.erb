@@ -1,0 +1,16 @@
+<h1>Sign Up</h1>
+<%= form_for User.new do |form|%>
+  <%= form.label :name %><br>
+  <%= form.text_field :name %><br>
+  
+  <%= form.label :email %><br> 
+  <%= form.email_field :email %><br>
+
+  <%= form.label :contact %><br>
+  <%= form.number_field :contact %><br>
+  
+  <%= form.label :password %><br>
+  <%= form.password_field :password_enc %><br>
+  
+  <%= form.submit %>
+<%end%>

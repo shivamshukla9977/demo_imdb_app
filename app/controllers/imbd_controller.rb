@@ -1,2 +1,0 @@
-class ImbdController < ApplicationController
-end

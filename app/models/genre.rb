@@ -1,3 +1,3 @@
 class Genre < ApplicationRecord
-	has_one :movie
+	has_one :movies
 end
