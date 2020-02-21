@@ -6,9 +6,9 @@ class User < ApplicationRecord
   
 	has_one :review
 
-	# validates :email, presence: true, uniqueness: true
-	# validates :password_enc, confirmation: true, length: { minimum: 6 }, presence: true
- #  validates :name, length: { minimum: 2 }
+	validates :email, presence: true, uniqueness: true
+	validates :password_enc, confirmation: true, length: { minimum: 6 }, presence: true
+  validates :name, length: { minimum: 2 }
 
   def enc(string)
     Digest::MD5.hexdigest string   

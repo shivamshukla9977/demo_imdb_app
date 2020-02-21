@@ -10,13 +10,13 @@ class MoviesController < ApplicationController
 
 	def create
 		@movie = Movie.create(movie_params)
-    redirect_to movie_path(@movie)
+    redirect_to cast_movie_path(@movie)
 	end
 
-	# def show
- #    #@movie = Movie.find(params[:id])
- #    redirect_to 'view_movie'
- #  end
+	def show
+    # @movie = Movie.find(params[:id])
+    # redirect_to movie_path(@movie)
+  end
 
 	def edit
   	#@movie = Movies.find(params[:id])

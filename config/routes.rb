@@ -8,7 +8,20 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
    
-  resources :movies
+  resources :movies do
+    member do
+      get :review
+      get :cast
+    end
+  end
+
+  resources :searches do
+    collection do
+      get :search
+    end
+  end
+
+  resource :reviews, only: [:new, :create, :destroy]
 
   root 'welcomes#index'
 end

@@ -1,0 +1,8 @@
+<%= current_user.name %>
+<h1><%= @movie %></h1>
+
+<%= form_for Review.new do |form| %>
+  <%= form.label :review %>
+  <%= form.text_field :comment %>
+  <%= form.submit %>
+<% end %>
