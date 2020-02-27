@@ -1,16 +1,25 @@
-<h1>Sign Up</h1>
-<%= form_for User.new do |form|%>
-  <%= form.label :name %><br>
-  <%= form.text_field :name %><br>
-  
-  <%= form.label :email %><br> 
-  <%= form.email_field :email %><br>
+<%= stylesheet_link_tag "users" %>
+<div class="card">
+  <h1 class="title">Sign Up</h1>
+  <%= form_for User.new do |form|%>
+    <%= form.label :name %>
+    <%= form.text_field :name %><br><br>
 
-  <%= form.label :contact %><br>
-  <%= form.number_field :contact %><br>
+    <%= form.label :email %>
+    <%= form.email_field :email %><br><br>
+
+    <%= form.label :contact %>
+    <%= form.number_field :contact %><br><br>
+
+    <%= form.label :password %>
+    <%= form.password_field :password_enc %><br><br>
+    
+    <%= form.submit :class => "submit" %>
+  <%end%>
+  <br>
+  <div class="button">
+    Already a member?&nbsp;
+    <%= link_to "Login", new_session_path, :class => "glyphicon glyphicon-user" %>
+  </div>
   
-  <%= form.label :password %><br>
-  <%= form.password_field :password_enc %><br>
-  
-  <%= form.submit %>
-<%end%>
+</div>

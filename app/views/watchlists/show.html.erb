@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Your Watchlist</h2>
+  <p>Enjoy your watchlist</p>            
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Movies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <% @result.each do |result| %>
+          <% if current_user.id == result.user_id %>
+            <%= result.movie.title %>
+          <% end %>
+        <% end %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

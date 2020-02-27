@@ -1,0 +1,42 @@
+<div>
+    <div class="container">
+      <h2></h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Release_date</th>
+            <th>Country</th>
+            <th>Language</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <% @movies.each do |movie| %>
+          <tbody>
+            <tr>
+              <td><%= movie.id %></td>
+              <td><%= movie.title %></td>
+              <td><%= movie.release_date %></td>
+              <td><%= movie.country %></td>
+              <td><%= movie.language %></td>
+              <td><%= movie.description %></td>
+              <td><%= link_to "View More", movie_path(movie.id) %></td>
+              <td><%= link_to "Review", new_reviews_path(movie.id)%></td>
+              <td>
+                <% if logged_in? %>
+                  <%= form_for Watchlist.new do |form| %>
+                    <%= form.hidden_field :user_id, :value => current_user.id %>
+                    <%= form.hidden_field :movie_id, :value => movie.id %>
+                    <%= form.submit "Add to Watchlist" %>
+                  <% end %>
+                <% else %>
+                  <td><%= link_to "Add To Watchlist", new_users_path %></td>
+                <% end %>
+            </td>
+            </tr>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+</div>

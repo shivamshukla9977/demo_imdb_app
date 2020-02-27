@@ -1,0 +1,45 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "imdb", root_path, :class => "navbar-brand"%>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movies <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Page 1-1</a></li>
+          <li><a href="#">Page 1-2</a></li>
+          <li><a href="#">Page 1-3</a></li>
+        </ul>
+      </li>
+      <li>
+        <% if logged_in? %>
+          <%= link_to "+watchlist", watchlist_path(current_user.id)%>
+        <% else %>
+          <%= link_to "+watchlist", new_users_path %>
+        <% end %>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-form navbar-left">
+      <div class="input-group">
+      <li>
+        <%= form_tag search_movies_path, method: 'get' do %>
+          <%= search_field_tag :search, params[:search], placeholder: "Search Movie", :class => "input-group form-control" %>
+          <div class="input-group-btn">
+            <%= submit_tag "Search", :class => "btn btn-default" %>
+           <i class="glyphicon glyphicon-search"></i>
+          </div>
+        <% end %>
+      </li>
+    </div>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <% if logged_in? %>
+        <li class="text">Welcome <%= current_user.name %></li>
+        <li><%= link_to "Logout", session_path(:current_user), method: :delete, :class => "glyphicon glyphicon-user" %></li>
+      <% else %>
+        <li><%= link_to "Login", new_session_path, :class => "glyphicon glyphicon-user" %></li>
+        <li><%= link_to "Signup", new_users_path, :class => "glyphicon glyphicon-user" %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

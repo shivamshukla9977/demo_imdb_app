@@ -5,10 +5,11 @@ class User < ApplicationRecord
   #before_save :encrypt_password
   
 	has_one :review
+  has_many :watchlists
 
-	validates :email, presence: true, uniqueness: true
-	validates :password_enc, confirmation: true, length: { minimum: 6 }, presence: true
-  validates :name, length: { minimum: 2 }
+	# validates :email, presence: true, uniqueness: true
+	# validates :password_enc, confirmation: true, length: { minimum: 6 }, presence: true
+ #  validates :name, length: { minimum: 2 }
 
   def enc(string)
     Digest::MD5.hexdigest string   

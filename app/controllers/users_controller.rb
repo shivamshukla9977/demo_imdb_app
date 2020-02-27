@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate, only: [:new, :create]
 
   def index
-    @user = user.all
+    @users = User.all
   end
 
   def new ; end
@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       user.password!(user_password[:password_enc])
-      session[:user_id] = user.id
       redirect_to dashboard_users_path
     else
       redirect_to new_users_path
@@ -21,6 +20,12 @@ class UsersController < ApplicationController
   def destroy
     
   end
+
+  # def update
+  #   @user = User.find(params[:id])
+  #   @user.update(user_params)
+  #   redirect_to user_path(@input)
+  # end
 
   private
 

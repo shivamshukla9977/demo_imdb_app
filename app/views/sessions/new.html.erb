@@ -1,9 +1,19 @@
-<h1>Login</h1>
-<%= form_tag sessions_path do %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %>
+<%= stylesheet_link_tag "users" %>
 
-  <%= label_tag :password %>
-  <%= password_field_tag :password_enc %>
-  <%= submit_tag "Login"%>
-<%end%>
+<div class="card">
+  <h1 class="title">Login</h1>
+
+  <%= form_tag sessions_path do %>
+    <%= label_tag :email %>
+    <%= text_field_tag :email %><br><br>
+
+    <%= label_tag :password %>
+    <%= password_field_tag :password_enc %><br><br>
+
+    <%= submit_tag "Login", :class => "submit" %>
+  <%end%>
+  <br>
+<div class="button">
+  Not a member?&nbsp;
+  <%= link_to "Signup", new_users_path, :class => "glyphicon glyphicon-user" %>
+</div>

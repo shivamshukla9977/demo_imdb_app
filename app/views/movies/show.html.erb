@@ -1,21 +1,51 @@
-<table border = "1">
-	<thead>
-		<th>Movie_id</th>
-		<th>Title</th>
-		<th>Year</th>
-		<th>Release Date</th>
-		<th>Description</th>
-	</thead>
+<%= stylesheet_link_tag "movies" %>
 
-	<tbody>
-		<% Movie.all.each do |movie| %>
-		<tr>
-			<td><%= movie.id %></td>
-			<td><%= movie.title %></td>
-			<td><%= movie.year %></td>
-			<td><%= movie.release_date %></td>
-			<td><%= movie.description %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+<% if @movie.errors.full_messages.any? %>
+  <% @movie.errors.full_messages.each do |error_message| %>
+    <%= error_message if @movie.errors.full_messages.first == error_message %> <br />
+  <% end %>
+<% end %>
+
+<div class="row">
+  <div class="leftcolumn">
+    <div class="movie-card">
+      <h2>Title: <%= @movie.title %></h2>
+      <h5>Release date: <%= @movie.release_date %></h5>
+      <h5><%#= @movie.id %></h5>
+      <div class="fakeimg" style="height:200px;">Image</div>
+      <p><%= @movie.description %></p>
+      <h4>Cast: 
+        <% @cast.each do |user| %>
+          <% if @movie.id == user.movie_id %>
+            <%= user.person.name  %>,
+          <% end %>
+        <% end %>
+      </h4>
+      <h4>Cast: 
+        <% @genre.each do |user| %>
+          <% if @movie.id == user.movie_id %>
+            <%= user.genre.title  %>,
+          <% end %>
+        <% end %>
+      </h4>
+      <%= link_to "Review", new_reviews_path(@movies) %> |
+      <% if logged_in? %>
+        <%= form_for Watchlist.new do |form| %>
+          <%= form.hidden_field :user_id, :value => current_user.id %>
+          <%= form.hidden_field :movie_id, :value => movie.id %>
+          <%= form.submit "Add to Watchlist" %>
+        <% end %>
+      <% else %>
+        <%= link_to "Add To Watchlist", new_users_path %>
+      <% end %>
+    </div>
+  </div>
+   <!-- <div class="rightcolumn">
+    <div class="card">
+      <h2>About Me</h2>
+      <div class="fakeimg" style="height:100px;">Image</div>
+      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+    </div>
+  </div> -->
+</div>
+      

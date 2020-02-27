@@ -1,0 +1,16 @@
+<h1>Add Person</h1>
+<%= form_for Person.new do |f|%>
+<div>
+  <%= f.label :name%>
+  <%= f.text_field :name %><br>
+</div>
+<div>
+  <%= f.label :dob%>
+  <%= f.date_field :dob %><br>
+</div>
+<div>
+  <%= f.label :gender%>
+  <%= f.select(:gender, [ 'Male', 'Female' ], {}, { :class => 'select' }) %><br>
+</div>
+  <%= f.submit "Create" %>
+<%end%>

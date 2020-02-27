@@ -3,15 +3,111 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 body {
-  margin: 10px;
   font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial;
+  background: #f1f1f1;
 }
 
-div {
-  margin: 5px;
-  pasdding: 20px;
+.title {
+  text-align: center;
+  background-color: #0f0f422f;
 }
 
 label {
-  padding-right: 60px;
+  min-width: 25%;
+  margin-left: 60px;
+  float: left;
+}
+
+input, select {
+  font-family: inherit;
+  font-size: inherit;
+  width: 45%;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 35%;
+  margin: auto;
+  font-family: arial;
+}
+
+.submit {
+  border-radius: 12px;
+  display: inline-block;
+  padding: 8px;
+  color: #000000;
+  background-color: #74db9c;
+  text-align: center;
+  cursor: pointer;
+  width: auto;
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 35%;
+}
+
+.title {
+  text-align: center;
+  background-color: #227cf02e;
+}
+
+input[type=submit] {
+  width: auto;
+}
+
+.movie-card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  margin: 10px;
+  font-family: arial;
+}
+
+.row {
+    margin-right: 0px ;
+    margin-left: 0px;
+}
+
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+.leftcolumn {
+  float: left;
+  width: 75%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+.button {
+  border-radius: 5px;
+  display: inline-block;
+  padding: 8px;
+  color: #000000;
+  background-color: #07130c2b;
+  text-align: center;
+  cursor: pointer;
+  width: auto;
+  font-size: 10px;
+  position: relative;
+}
+
+
+@media screen and (max-width: 800px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
 }
