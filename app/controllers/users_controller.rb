@@ -5,28 +5,36 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def new ; end
+  def new
+    @user = User.new
+  end
 
   def create
     user = User.new(user_params)
     if user.save
       user.password!(user_password[:password_enc])
-      redirect_to dashboard_users_path
+      redirect_to dashboard_user_path
     else
-      redirect_to new_users_path
+      redirect_to new_user_path
+    end
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
     end
   end
 
   def destroy
     
   end
-
-  # def update
-  #   @user = User.find(params[:id])
-  #   @user.update(user_params)
-  #   redirect_to user_path(@input)
-  # end
-
   private
 
   def user_params

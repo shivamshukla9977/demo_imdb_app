@@ -1,15 +1,15 @@
 
 <% if logged_in? %>
   <%= current_user.name %>
-  
+  <%= params[:movie_id] %>
   
   <%= form_for @review do |form| %>
     <%= form.label :review %>
     <%= form.text_field :comment %>
-    <%= form.hidden_field :user_id, :value => current_user.id%>
-    <%#= form.hidden_field :movies_id, :value => @movies %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= form.hidden_field :movie_id, value: params[:movie_id] %>
     <%= form.submit %>
   <% end %>
 <% else %>
-  <%= controller.redirect_to new_users_path %>
+  <%= controller.redirect_to new_user_path %>
 <% end %>

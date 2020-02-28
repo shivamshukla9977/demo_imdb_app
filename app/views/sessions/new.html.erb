@@ -13,7 +13,12 @@
     <%= submit_tag "Login", :class => "submit" %>
   <%end%>
   <br>
+
+<div class="button">
+  Forget Password?&nbsp;
+  <%= link_to "Reset Password", :class => "glyphicon glyphicon-user" %>
+</div>
 <div class="button">
   Not a member?&nbsp;
-  <%= link_to "Signup", new_users_path, :class => "glyphicon glyphicon-user" %>
+  <%= link_to "Signup", new_user_path, :class => "glyphicon glyphicon-user" %>
 </div>

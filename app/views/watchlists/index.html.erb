@@ -1,0 +1,22 @@
+<%= stylesheet_link_tag "watchlists" %>
+
+<div class="container card">
+  <h2 class="title">Your Watchlist</h2>
+  <p>Enjoy your watchlist</p>            
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Movies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% current_user.watchlists.each do |watchlist| %>
+        <tr>
+          <td>
+            <%= watchlist.movie.title %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

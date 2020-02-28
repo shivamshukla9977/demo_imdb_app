@@ -1,20 +1,23 @@
 Rails.application.routes.draw do
-  resource :users do
+  
+  devise_for :users  do
     member do
       get :dashboard
-      post :profile
     end
   end
+ # resources :users
 
-  resources :sessions, only: [:new, :create, :destroy]
+  #resources :sessions, only: [:new, :create, :destroy]
    
   resources :movies do
     collection do
       get :search
     end
+
+     resources :reviews
   end
 
-  resource :reviews, only: [:new, :create, :destroy]
+  resources :reviews
 
   resource :people
 

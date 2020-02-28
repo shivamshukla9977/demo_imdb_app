@@ -1,11 +1,20 @@
 class ReviewsController < ApplicationController
+  def index
+    @reviews = Review.all  
+  end
+
   def new
     @review = Review.new
   end
   
   def create
     @review = Review.create(review_params)
-    render json: @review
+    p @review
+    if @review.save
+      redirect_to movie_reviews_path(@review)
+    else
+      render :new
+    end  
   end
 
   def show

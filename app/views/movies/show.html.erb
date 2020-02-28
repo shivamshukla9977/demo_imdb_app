@@ -9,34 +9,36 @@
 <div class="row">
   <div class="leftcolumn">
     <div class="movie-card">
-      <h2>Title: <%= @movie.title %></h2>
+      <h2 class="title">Title: <%= @movie.title %></h2>
+      
       <h5>Release date: <%= @movie.release_date %></h5>
-      <h5><%#= @movie.id %></h5>
-      <div class="fakeimg" style="height:200px;">Image</div>
+    
+      <div class="fakeimg"><%= image_tag(@movie.image, :style=>'width: 70%;') if @movie.image.attached? %></div>
+      
       <p><%= @movie.description %></p>
+      
       <h4>Cast: 
-        <% @cast.each do |user| %>
-          <% if @movie.id == user.movie_id %>
-            <%= user.person.name  %>,
-          <% end %>
+        <% @movie.movie_casts.each do |cast| %>
+          <%= cast.person.name %>
         <% end %>
       </h4>
+      
       <h4>Cast: 
-        <% @genre.each do |user| %>
-          <% if @movie.id == user.movie_id %>
-            <%= user.genre.title  %>,
-          <% end %>
+        <% @movie.movie_genres.each do |category| %>
+          <%= category.genre.title  %>,
         <% end %>
       </h4>
-      <%= link_to "Review", new_reviews_path(@movies) %> |
+      
+      <%= link_to "Review", new_review_path(@movies) %> |
+      
       <% if logged_in? %>
-        <%= form_for Watchlist.new do |form| %>
-          <%= form.hidden_field :user_id, :value => current_user.id %>
-          <%= form.hidden_field :movie_id, :value => movie.id %>
-          <%= form.submit "Add to Watchlist" %>
+        <%= form_for @movie.watchlists.build do |form| %>
+          <%= form.hidden_field :user_id, value: current_user.id %>
+          <%= form.hidden_field :movie_id %>
+          <%= form.submit "Add to Watchlist", {:style=>'color:#000;'} %>
         <% end %>
       <% else %>
-        <%= link_to "Add To Watchlist", new_users_path %>
+        <%= link_to "Add To Watchlist", new_user_registration_path %>
       <% end %>
     </div>
   </div>

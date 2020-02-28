@@ -3,4 +3,6 @@
   <h1 class="title"><%= current_user.name %></h1>
   <h4><%= current_user.email %></h4>
   <h4><%=  current_user.contact %></h4>
+
+  <%= link_to "Edit", edit_user_path(current_user) %>
 </div>

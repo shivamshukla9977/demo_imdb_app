@@ -1,0 +1,56 @@
+<%#= stylesheet_link_tag "watchlists" %>
+
+
+<div class="container card">
+  <% if logged_in? %>
+    <h2>Your Comments</h2>           
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Movies</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% current_user.reviews.each do |review| %>
+          <tr>
+            <td>
+              <%= review.movie.title %>
+            </td>
+            <td>
+             <%= review.comment %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <div class="container card">
+      <h2 style="color: white;">Comments</h2>           
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Movies</th>
+            <th>Comments</th>
+            <th>Comment By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reviews.each do |review| %>
+            <tr>
+              <td>
+                <%= review.movie.title %>
+              </td>
+              <td>
+               <%= review.comment %>
+              </td>
+              <td>
+               <%= review.user.name %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

@@ -8,39 +8,7 @@
 <% end %>
 
 <div class="card">
-  <h1 class="title">Add Movies</h1>
-  <%= form_for @movie, multipart: true do |f|%>
-      <%= f.label :title%>
-      <%= f.text_field :title %><br><br>
-   
-      <%= f.label :release_date%>
-      <%= f.date_field :release_date %><br><br>
-  
-      <%= f.label :play_time %>
-      <%= f.time_field :play_time, :format=>"%H:%M" %><br><br>
-
-      <%= f.label :language %>
-      <%= f.text_field :language %><br><br>
-   
-      <%= f.label :country %>
-      <%= f.text_field :country %><br><br>
-
-      <%= f.label :description %>
-      <%= f.text_field :description %><br><br>
-  
-      <%= f.fields_for :movie_casts do |person| %>
-        <%= person.label :cast %>
-        <%= person.select(:person_id, option_for_select_member) %>
-        <%= link_to "New", new_people_path, :class => "button glyphicon glyphicon-user" %>
-        <br><br>
-        <%= person.label :roles %>
-        <%= person.select(:role_id, option_for_select_role) %><br><br>
-      <% end %>
-      <%= f.fields_for :movie_genres do |genre| %>
-        <%= genre.label :genre %>
-        <%= genre.select(:genre_id, option_for_select_genre) %>
-      <% end %>
-      <br><br>
-    <%= f.submit :class => "submit" %>
-    <%end%>
+  <h1 class="title">Add Movie</h1>
+  <%= render "/layouts/movie" %>
 </div>
+<br><br>

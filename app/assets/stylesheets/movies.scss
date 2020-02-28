@@ -11,6 +11,7 @@ body {
 .title {
   text-align: center;
   background-color: #0f0f422f;
+  text-transform: capitalize;
 }
 
 label {
@@ -53,6 +54,7 @@ input, select {
 
 input[type=submit] {
   width: auto;
+  color: black;
 }
 
 .movie-card {
@@ -63,8 +65,8 @@ input[type=submit] {
 }
 
 .row {
-    margin-right: 0px ;
-    margin-left: 0px;
+  margin-right: 0px ;
+  margin-left: 0px;
 }
 
 .header {
@@ -110,4 +112,9 @@ input[type=submit] {
     width: 100%;
     padding: 0;
   }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }

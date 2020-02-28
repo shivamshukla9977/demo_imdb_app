@@ -9,16 +9,17 @@ class WatchlistsController < ApplicationController
 
   def create
     @watchlist = Watchlist.new(watchlist_params)
-    
+    p @watchlist
     if @watchlist.save
-      redirect_to watchlist_path
-    end  
+      redirect_to watchlists_path(@watchlist)
+    else
+      p @watchlist.errors
+      redirect_to root_path
+    end
   end
 
   def show
     @watchlist = Watchlist.find(params[:id])
-    @result = @watchlist.movie
-    #render json: @watchlist
   end
 
   private

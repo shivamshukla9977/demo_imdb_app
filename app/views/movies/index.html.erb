@@ -7,8 +7,8 @@
             <th>Id</th>
             <th>Title</th>
             <th>Release_date</th>
-            <th>Country</th>
-            <th>Language</th>
+            <!-- <th>Country</th>
+            <th>Language</th> -->
             <th>Description</th>
           </tr>
         </thead>
@@ -16,22 +16,25 @@
           <tbody>
             <tr>
               <td><%= movie.id %></td>
-              <td><%= movie.title %></td>
+              <td style="text-transform: capitalize;"><%= movie.title %></td>
               <td><%= movie.release_date %></td>
-              <td><%= movie.country %></td>
-              <td><%= movie.language %></td>
+            <!--   <td><%= movie.country %></td>
+              <td><%= movie.language %></td> -->
               <td><%= movie.description %></td>
+              <td><%= image_tag(movie.image, :style=>'width:100px;') if movie.image.attached? %></td>
               <td><%= link_to "View More", movie_path(movie.id) %></td>
-              <td><%= link_to "Review", new_reviews_path(movie.id)%></td>
+              <td><%= link_to "Review", new_movie_review_path(movie.id)%></td>
+              <td><%= link_to "See Reviews", movie_reviews_path(movie.id) %></td>
+              <td><%= link_to "Edit", edit_movie_path(movie.id)%></td>
               <td>
                 <% if logged_in? %>
-                  <%= form_for Watchlist.new do |form| %>
-                    <%= form.hidden_field :user_id, :value => current_user.id %>
-                    <%= form.hidden_field :movie_id, :value => movie.id %>
-                    <%= form.submit "Add to Watchlist" %>
+                  <%= form_for movie.watchlists.build do |form| %>
+                    <%= form.hidden_field :user_id, value: current_user.id %>
+                    <%= form.hidden_field :movie_id %>
+                    <%= form.submit "Add to Watchlist", {:style=>'color:#000;'}%>
                   <% end %>
                 <% else %>
-                  <td><%= link_to "Add To Watchlist", new_users_path %></td>
+                  <%= link_to "Add To Watchlist", new_user_registration_path %>
                 <% end %>
             </td>
             </tr>
