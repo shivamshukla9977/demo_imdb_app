@@ -1,7 +1,0 @@
-<%= stylesheet_link_tag "users" %>
-
-<% if logged_in? %>
-  <%= render "/layouts/profile" %>
-<% else %>
-  <% controller.redirect_to root_path %>
-<% end %>

@@ -31,7 +31,7 @@
       
       <%= link_to "Review", new_review_path(@movies) %> |
       
-      <% if logged_in? %>
+      <% if user_signed_in? %>
         <%= form_for @movie.watchlists.build do |form| %>
           <%= form.hidden_field :user_id, value: current_user.id %>
           <%= form.hidden_field :movie_id %>

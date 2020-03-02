@@ -8,29 +8,13 @@ body {
   background: #f1f1f1;
 }
 
-.title {
-  text-align: center;
-  background-color: #0f0f422f;
-  text-transform: capitalize;
-}
-
-label {
-  min-width: 25%;
-  margin-left: 60px;
-  float: left;
-}
-
-input, select {
-  font-family: inherit;
-  font-size: inherit;
-  width: 45%;
-}
-
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 35%;
   margin: auto;
   font-family: arial;
+  height: 75%;
+  margin-bottom: 3%;
 }
 
 .submit {
@@ -49,12 +33,26 @@ input, select {
 
 .title {
   text-align: center;
-  background-color: #227cf02e;
+  background-color: #0f0f422f;
+  text-transform: capitalize;
+}
+
+label {
+  min-width: 25%;
+  margin-left: 60px;
+  float: left;
+}
+
+input, select {
+  font-family: inherit;
+  font-size: inherit;
+  width: 45%;
 }
 
 input[type=submit] {
   width: auto;
   color: black;
+  margin-bottom: 10px;
 }
 
 .movie-card {

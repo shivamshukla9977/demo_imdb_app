@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
   
-  devise_for :users
 
-  resources :users  do
-    member do
-      get :dashboard
-    end
-  end
-  #resources :sessions, only: [:new, :create, :destroy]
+  devise_for :users 
    
   resources :movies do
     collection do

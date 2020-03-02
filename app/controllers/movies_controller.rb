@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  skip_before_action :authenticate_user!
   
   def index
     @movies = Movie.all
@@ -31,7 +32,7 @@ class MoviesController < ApplicationController
     if params[:search].blank?  
       redirect_to root_path
     else
-      @movies = Movie.search(params[:search].downcase)
+      @movies = Movie.search(params[:filter].downcase, params[:search].downcase)
       render :index
     end
   end

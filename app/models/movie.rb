@@ -8,11 +8,21 @@ class Movie < ApplicationRecord
 
   validates :title, length: { minimum: 2 }
 
-  def self.search(search)
-    if search
+  def self.search(filter, search)
+    if filter == 'actor'
+      Movie.includes(movie_casts: :person).where("people.name ILIKE ?","#{search}%").references(:movie_casts, :people)
+    elsif filter == 'genre'
+      Movie.includes(movie_genres: :genre).where("genres.title ILIKE ?","#{search}%").references(:movie_genres, :genres)
+    elsif filter == 'all'
       where("LOWER(title) LIKE ?","#{search}%")
-    else
-      all
     end
   end
+
+  # def self.search(search)
+  #   if search
+  #     where("LOWER(title) LIKE ?","#{search}%")
+  #   else
+  #     all
+  #   end
+  # end
 end

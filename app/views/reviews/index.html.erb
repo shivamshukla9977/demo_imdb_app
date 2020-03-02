@@ -2,8 +2,8 @@
 
 
 <div class="container card">
-  <% if logged_in? %>
-    <h2>Your Comments</h2>           
+  <% if user_signed_in? %>
+    <h2 style="color: #009fff;">Your Comments</h2>           
     <table class="table table-hover">
       <thead>
         <tr>
@@ -45,7 +45,7 @@
                <%= review.comment %>
               </td>
               <td>
-               <%= review.user.name %>
+               <%#= review.user.name %>
               </td>
             </tr>
           <% end %>
