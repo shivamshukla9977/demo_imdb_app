@@ -12,7 +12,7 @@
         </ul>
       </li>
       <li>
-        <% if logged_in? %>
+        <% if user_signed_in? %>
           <%= link_to "+watchlist", watchlists_path(current_user.id)%>
         <% else %>
           <%= link_to "+watchlist", new_user_registration_path %>
@@ -35,7 +35,8 @@
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
         <li class="text">Welcome<%= link_to current_user.email, dashboard_user_path(current_user) %></li>
-        <li><%= link_to "Logout", session_path(:current_user), method: :delete, :class => "glyphicon glyphicon-user" %></li>
+        <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'%></li>
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => "glyphicon glyphicon-user" %></li>
       <% else %>
         <li><%= link_to "Login", new_user_session_path, :class => "glyphicon glyphicon-user" %></li>
         <li><%= link_to "Signup", new_user_registration_path, :class => "glyphicon glyphicon-user" %></li>
