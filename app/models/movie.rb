@@ -13,16 +13,8 @@ class Movie < ApplicationRecord
       Movie.includes(movie_casts: :person).where("people.name ILIKE ?","#{search}%").references(:movie_casts, :people)
     elsif filter == 'genre'
       Movie.includes(movie_genres: :genre).where("genres.title ILIKE ?","#{search}%").references(:movie_genres, :genres)
-    elsif filter == 'all'
+    elsif filter == 'movies'
       where("LOWER(title) LIKE ?","#{search}%")
     end
   end
-
-  # def self.search(search)
-  #   if search
-  #     where("LOWER(title) LIKE ?","#{search}%")
-  #   else
-  #     all
-  #   end
-  # end
 end

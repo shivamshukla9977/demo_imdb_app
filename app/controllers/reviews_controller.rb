@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
-    @reviews = Review.all  
+    @reviews = Review.all
   end
 
   def new

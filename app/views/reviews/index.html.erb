@@ -1,6 +1,5 @@
 <%#= stylesheet_link_tag "watchlists" %>
 
-
 <div class="container card">
   <% if user_signed_in? %>
     <h2 style="color: #009fff;">Your Comments</h2>           
@@ -32,7 +31,7 @@
           <tr>
             <th>Movies</th>
             <th>Comments</th>
-            <th>Comment By</th>
+            <!-- <th>Comment By</th> -->
           </tr>
         </thead>
         <tbody>
@@ -45,7 +44,7 @@
                <%= review.comment %>
               </td>
               <td>
-               <%#= review.user.name %>
+               <%#= review.users.name %>
               </td>
             </tr>
           <% end %>

@@ -8,6 +8,6 @@ module MoviesHelper
   end
 
   def option_for_select_filter
-    options_for_select([['All', 'all'], ['Genre', 'genre'], ['Actor', 'actor'], ['Release Date', 'date']])
+    options_for_select([['Movies', 'movies'], ['Genre', 'genre'], ['Actor', 'actor']])
   end
 end

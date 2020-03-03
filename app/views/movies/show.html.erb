@@ -7,44 +7,46 @@
 <% end %>
 
 <div class="row">
-  <div class="leftcolumn">
+  <div class="leftcolumn col-sm-8">
     <div class="movie-card">
       <h2 class="title">Title: <%= @movie.title %></h2>
       
       <h5>Release date: <%= @movie.release_date %></h5>
     
-      <div class="fakeimg"><%= image_tag(@movie.image, :style=>'width: 70%;') if @movie.image.attached? %></div>
+      <div class="fakeimg"><%= image_tag(@movie.image, :style=>'width: 100%; height: 50%;') if @movie.image.attached? %></div>
       
-      <p><%= @movie.description %></p>
+      <p class="description"><%= @movie.description %></p>
       
-      <h4>Cast: 
+      <h4 class="details">Cast: 
         <% @movie.movie_casts.each do |cast| %>
           <%= cast.person.name %>
         <% end %>
       </h4>
       
-      <h4>Cast: 
+      <h4 class="details">Genres: 
         <% @movie.movie_genres.each do |category| %>
           <%= category.genre.title  %>,
         <% end %>
       </h4>
-      
-      <%= link_to "Review", new_review_path(@movies) %> |
-      
-      <% if user_signed_in? %>
-        <%= form_for @movie.watchlists.build do |form| %>
-          <%= form.hidden_field :user_id, value: current_user.id %>
-          <%= form.hidden_field :movie_id %>
-          <%= form.submit "Add to Watchlist", {:style=>'color:#000;'} %>
+
+      <span class="details">
+        <%= link_to "Review", new_review_path(@movies) %> |
+        
+        <% if user_signed_in? %>
+          <%= form_for @movie.watchlists.build do |form| %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.hidden_field :movie_id %>
+            <%= form.submit "Add to Watchlist", {:style=>'color:#000;'} %>
+          <% end %>
+        <% else %>
+          <%= link_to "Add To Watchlist", new_user_registration_path %>
         <% end %>
-      <% else %>
-        <%= link_to "Add To Watchlist", new_user_registration_path %>
-      <% end %>
+      </span>
     </div>
   </div>
-   <!-- <div class="rightcolumn">
-    <div class="card">
-      <h2>About Me</h2>
+   <!-- <div class="rightcolumn col-sm-4">
+    <div class="movie_card">
+      <h2>Latest Release</h2>
       <div class="fakeimg" style="height:100px;">Image</div>
       <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
     </div>

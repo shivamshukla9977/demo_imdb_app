@@ -35,7 +35,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <% if user_signed_in? %>
-        <li class="text">Welcome<%= link_to current_user.name %></li>
+        <li class="text"><%= link_to current_user.name %></li>
         <li><%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'%></li>
         <li><%= link_to "Sign out", destroy_user_session_path, :method  => :delete, :class => "glyphicon glyphicon-user" %></li>
       <% else %>

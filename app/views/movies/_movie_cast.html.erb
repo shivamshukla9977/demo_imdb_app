@@ -1,0 +1,11 @@
+<%= f.label :movie_casts %>
+<%= f.select(:person_id, option_for_select_member) %>
+<%= link_to "New", new_people_path, :class => "button glyphicon glyphicon-user" %>
+<br><br>
+<%= f.label :roles %>
+<%= f.select(:role_id, option_for_select_role) %><br><br>
+
+<div>
+  <%#= f.text_field :_destroy, as: :hidden %>
+  <%= link_to "Remove", '#', class: 'remove_record' %>
+</div>
