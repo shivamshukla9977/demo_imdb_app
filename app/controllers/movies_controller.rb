@@ -7,8 +7,8 @@ class MoviesController < ApplicationController
 
 	def new
 		@movie = Movie.new
-    1.times { @movie.movie_casts.build }
-    1.times { @movie.movie_genres.build }
+    @movie.movie_casts.build
+    @movie.movie_genres.build 
 	end
 
 	def create

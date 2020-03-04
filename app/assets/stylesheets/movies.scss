@@ -1,20 +1,19 @@
 // Place all the styles related to the movies controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-family: Arial;
-  background: #f1f1f1;
 }
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 35%;
+  max-width: 45%;
   margin: auto;
   font-family: arial;
   height: 75%;
   margin-bottom: 5%;
+  background-color: #3f3f42b8;
 }
 
 .submit {
@@ -33,14 +32,17 @@ body {
 
 .title {
   text-align: center;
-  background-color: #0f0f422f;
+  font-weight: bold;
+  background-color: #7cd9d9;
   text-transform: capitalize;
+  font-family: "Times New Roman", Times, serif;
 }
 
 label {
   min-width: 25%;
   margin-left: 60px;
   float: left;
+  color: #ffffff;
 }
 
 input, select {
@@ -102,12 +104,13 @@ input[type=submit] {
   display: inline-block;
   padding: 8px;
   color: #000000;
-  background-color: #07130c2b;
+  background-color: #0a19fbd4;
   text-align: center;
   cursor: pointer;
   width: auto;
   font-size: 10px;
   position: relative;
+  color: #ffffff;
 }
 
 img {
@@ -122,6 +125,7 @@ img {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.2em;
   padding: 15px 30px 20px;
+  color: #ffffff;
 }
 
 .details {
@@ -131,6 +135,7 @@ img {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.5em;
   padding: 5px 30px 5px;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 800px) {
@@ -140,3 +145,22 @@ img {
   }
 }
 
+.submit_btn {
+  border-radius: 12px;
+  display: inline-block;
+  padding: 8px;
+  color: #000000;
+  background-color: #74db9c;
+  text-align: center;
+  cursor: pointer;
+  width: auto;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.role {
+  min-width: 12%;
+  margin-left: 60px;
+  float: left;
+  color: #ffffff;
+}

@@ -4,7 +4,7 @@ class Movie < ApplicationRecord
 	has_many :movie_genres
   has_many :watchlists
   has_one_attached :image
-  accepts_nested_attributes_for :movie_casts, :movie_genres
+  accepts_nested_attributes_for :movie_casts, :movie_genres, allow_destroy: true
 
   validates :title, length: { minimum: 2 }
 
@@ -18,3 +18,7 @@ class Movie < ApplicationRecord
     end
   end
 end
+
+ #Movie.includes(movie_casts: :role).where("roles.title = ?", "director").references(:movie_casts, :people, :roles)
+ #Person.includes(movies: :movie_casts).where("roles.title = ?", "director").references(:movie_casts, :movies, :roles)
+ #Movie.includes(movie_casts: :role).where(roles: { title: => 'director' })

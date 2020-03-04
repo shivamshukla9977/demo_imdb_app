@@ -18,13 +18,21 @@
   <%= f.text_field :description %><br><br>
 
   <%= f.label :image %>
-  <%= f.file_field :image %><br><br>
-  <div>
+  <%= f.file_field :image, {:style=>'color:#fff;'} %><br><br>
+
+  <div class="fields">
     <%= f.fields_for :movie_casts do |person| %>
-      <%= render "movie_cast", f: person %>
+      <%= person.label :movie_casts %>
+      <%= person.select(:person_id, option_for_select_member) %>
+      <br><br>
+      <%= person.label :roles %>
+      <%= person.select(:role_id, option_for_select_role) %>
+      <%#= render "movie_cast", f: person %>
     <% end %>
-    <%= link_to_add_row('Add', f, :movie_casts, class: 'btn btn-primary') %>
+    <%= link_to_add_row('Add', f, :movie_casts, :class => "button glyphicon") %>
+    <%= link_to "New", new_people_path, :class => "button glyphicon glyphicon-user" %>
   </div>
+  <br>
   
   <%= f.fields_for :movie_genres do |genre| %>
     <%= genre.label :genre %>
