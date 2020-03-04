@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <% current_user.watchlists.each do |watchlist| %>
+      <% current_user.watchlists.order(created_at: :desc).each do |watchlist| %>
         <tr>
           <td>
             <%= watchlist.movie.title %>

@@ -4,7 +4,7 @@ class Movie < ApplicationRecord
 	has_many :movie_genres
   has_many :watchlists
   has_one_attached :image
-  accepts_nested_attributes_for :movie_casts, :movie_genres, allow_destroy: true
+  accepts_nested_attributes_for :movie_casts, :movie_genres, allow_destroy: true, reject_if: :all_blank
 
   validates :title, length: { minimum: 2 }
 

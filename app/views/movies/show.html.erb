@@ -18,20 +18,27 @@
       <p class="description"><%= @movie.description %></p>
       
       <h4 class="details">Cast:
-
-        <div style="margin: 10px;">
-          <% @movie.movie_casts.each do |cast| %>
-            <span class="role"> <%= cast.role.title %>:</span>
-            <span> <%= cast.person.name %></span>
-            <br>
-          <% end %>
-        </div>
+        <% if @movie.movie_casts.count > 0 %>
+          <div style="margin: 10px;">
+            <% @movie.movie_casts.order(created_at: :asc).each do |cast| %>
+              <span class="role"> <%= cast.role.title %>:</span>
+              <span> <%= cast.person.name %></span>
+              <br>
+            <% end %>
+          </div>
+        <% else %>
+            No Data Available!!
+        <% end %>
       </h4>
 
       <h4 class="details">Genre: 
-        <% @movie.movie_genres.each do |category| %>
-          <%= category.genre.title  %>
-        <% end %>
+        <% if @movie.movie_genres.count > 0 %>
+          <% @movie.movie_genres.each do |category| %>
+            <%= category.genre.title  %>
+          <% end %>
+        <% else %>
+            <span> No Data Available!! </span>
+          <% end %>
       </h4>
 
       <span class="details">
@@ -49,11 +56,13 @@
       </span>
     </div>
   </div>
-   <!-- <div class="rightcolumn col-sm-4">
+
+  <!--  <div class="rightcolumn col-sm-4">
     <div class="movie_card">
-      <h2>Latest Release</h2>
-      <div class="fakeimg" style="height:100px;">Image</div>
-      <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
+      <h2>Also Watch</h2>
+      <%#= @movies.all do |movie| %>
+        <p> <%= @movie.title %> </p>
+      <%# end %>
     </div>
   </div> -->
 </div>

@@ -42,7 +42,7 @@
             <th>Description</th>
           </tr>
         </thead>
-        <% @movies.each do |movie| %>
+        <% @movies.order(created_at: :desc).each do |movie| %>
           <tbody>
             <tr>
               <td><%= movie.id %></td>
