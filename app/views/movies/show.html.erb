@@ -57,13 +57,13 @@
     </div>
   </div>
 
-  <!--  <div class="rightcolumn col-sm-4">
+  <div class="rightcolumn col-sm-4">
     <div class="movie_card">
-      <h2>Also Watch</h2>
-      <%#= @movies.all do |movie| %>
-        <p> <%= @movie.title %> </p>
-      <%# end %>
+      <h2 class="title">Also Watch</h2>
+      <% @movies.each do |movie| %>
+        <p> <%= link_to movie.title, movie_path(movie.id), :style => "color: #ffffff;" %> </p>
+      <% end %>
     </div>
-  </div> -->
+  </div>
 </div>
       

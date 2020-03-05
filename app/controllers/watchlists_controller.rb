@@ -11,7 +11,7 @@ class WatchlistsController < ApplicationController
     @watchlist = Watchlist.new(watchlist_params)
     p @watchlist
     if @watchlist.save
-      redirect_to watchlists_path(@watchlist)
+      #redirect_to root_path
     else
       p @watchlist.errors
       redirect_to root_path

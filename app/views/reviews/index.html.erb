@@ -35,7 +35,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @reviews.each do |review| %>
+          <% @movie.reviews.each do |review| %>
             <tr>
               <td>
                 <%= review.movie.title %>
@@ -44,7 +44,7 @@
                <%= review.comment %>
               </td>
               <td>
-               <%#= review.users.name %>
+               <%#= review.user.name %>
               </td>
             </tr>
           <% end %>

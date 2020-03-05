@@ -1,34 +1,8 @@
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  
-  <ol class="carousel-indicators">
-     <% @movies.each_with_index do |photo, n| %>
-       <li data-target='#MyCarousel' data-slide-to="#{n}" class="#{'active' if n == 0}"></li>
-     <% end %>
-  </ol>
+<%= javascript_pack_tag 'change_text' %>
 
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <%= image_tag @movies.last.image, :style=>'width:100%;' %>
-    </div>
-    <% @movies.drop(1).each do |photo| %>
-       <div class="item">
-         <%= image_tag photo.image, :style=>'width:100%;' %>
-       </div>
-    <% end %>
-  </div>
+<%= render '/layouts/imageSlider' %>
 
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
-
-<div style="margin-bottom: 5%;">
+<div style="margin-bottom: 7%;">
     <div class="container">
       <h2></h2>
       <table class="table">
@@ -37,8 +11,6 @@
             <th>Id</th>
             <th>Title</th>
             <th>Release_date</th>
-            <!-- <th>Country</th>
-            <th>Language</th> -->
             <th>Description</th>
           </tr>
         </thead>
@@ -48,20 +20,18 @@
               <td><%= movie.id %></td>
               <td style="text-transform: capitalize;"><%= movie.title %></td>
               <td><%= movie.release_date %></td>
-            <!--   <td><%= movie.country %></td>
-              <td><%= movie.language %></td> -->
               <td><%= movie.description %></td>
               <td><%= image_tag(movie.image, :style=>'width:100px;') if movie.image.attached? %></td>
               <td><%= link_to "View More", movie_path(movie.id) %></td>
               <td><%= link_to "Review", new_movie_review_path(movie.id)%></td>
               <td><%= link_to "See Reviews", movie_reviews_path(movie.id) %></td>
-             <!--  <td><%= link_to "Edit", edit_movie_path(movie.id)%></td> -->
+              <td><%= link_to "Edit", edit_movie_path(movie.id)%></td>
               <td>
                 <% if user_signed_in? %>
-                  <%= form_for movie.watchlists.build do |form| %>
+                  <%= form_for movie.watchlists.build, remote: true do |form|%>
                     <%= form.hidden_field :user_id, value: current_user.id %>
                     <%= form.hidden_field :movie_id %>
-                    <%= form.submit "Add to Watchlist", {:style=>'color:#000;'}%>
+                    <%= form.submit "Add to Watchlist", :id => "tag#{movie.id}", :style=>'color:#000;' %>
                   <% end %>
                 <% else %>
                   <%= link_to "Add To Watchlist", new_user_registration_path %>

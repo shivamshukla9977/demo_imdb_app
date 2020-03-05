@@ -18,7 +18,3 @@ class Movie < ApplicationRecord
     end
   end
 end
-
- #Movie.includes(movie_casts: :role).where("roles.title = ?", "director").references(:movie_casts, :people, :roles)
- #Person.includes(movies: :movie_casts).where("roles.title = ?", "director").references(:movie_casts, :movies, :roles)
- #Movie.includes(movie_casts: :role).where(roles: { title: => 'director' })
