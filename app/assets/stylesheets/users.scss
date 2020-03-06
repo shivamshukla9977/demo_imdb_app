@@ -63,8 +63,13 @@ button:hover, a:hover {
   opacity: 0.7;
 }
 
-h1{
+h4{
   margin-top: 20px;
   margin-bottom: 10px;
   text-transform: capitalize;
+  color: white;
+}
+
+.navbar-inverse .navbar-link {
+  color: #0f0e0e;
 }

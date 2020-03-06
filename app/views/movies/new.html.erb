@@ -7,8 +7,12 @@
   <% end %>
 <% end %>
 
-<div class="card">
-  <h1 class="title">Add Movie</h1>
-  <%= render "/layouts/movie" %>
-</div>
-<br><br>
+<% if user_signed_in? && current_user.role == 'admin' %>
+  <div class="card">
+    <h1 class="title">Add Movie</h1>
+    <%= render "/layouts/movie" %>
+  </div>
+  <br><br>
+<% else %>
+  <% controller.redirect_to root_path %>
+<% end %>

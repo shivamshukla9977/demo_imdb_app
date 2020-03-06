@@ -3,7 +3,7 @@
 <% if user_signed_in? && current_user.role == 'admin' %>
   <div class="card">
     <h1 class="title">Add Person</h1>
-    <%= form_for Person.new do |f|%>
+    <%= form_for @person do |f|%>
     <div>
       <%= f.label :name%>
       <%= f.text_field :name %><br>
@@ -23,7 +23,6 @@
       <%= f.submit "Create", :class => "submit" %>
     <%end%>
   </div>
-  <br><br><br><br><br><br><br><br><br>
 <% else %>
   <% controller.redirect_to root_path %>
 <% end %>

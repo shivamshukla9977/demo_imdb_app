@@ -1,19 +1,17 @@
-<table border = "1" style="margin-bottom: 7%;">
-  <thead>
-    <th>person_id</th>
-    <th>Name</th>
-    <th>dob</th>
-    <th>Gender</th>
-  </thead>
+<%= stylesheet_link_tag "users" %>
 
-  <tbody>
-    <% Person.all.each do |person| %>
-    <tr>
-      <td><%= person.id %></td>
-      <td><%= person.name %></td>
-      <td><%= person.dob %></td>
-      <td><%= person.gender %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="card">
+  <div class="fakeimg">
+    <%= image_tag(@person.image, :style=>'width: 100%; height: 50%;') if @person.image.attached? %>
+  </div>
+  <h1 class="title"><%= @person.name %></h1>
+  <h4>
+    DOB: <%=  @person.dob %>
+  </h4>
+  <h4>
+    Gender : <%= @person.gender %>
+  </h4>
+  <% if user_signed_in? && current_user.role == 'admin' %>
+    <td> <%= link_to "Edit", edit_person_path(@person.id) %></td>
+  <% end %>
+</div>

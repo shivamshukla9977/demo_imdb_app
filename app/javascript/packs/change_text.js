@@ -11,4 +11,3 @@ $(document).ready(function(){
     $(this).prop("value", "Added To Watchlist");
   });
 });
-

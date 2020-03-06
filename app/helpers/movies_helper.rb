@@ -10,4 +10,8 @@ module MoviesHelper
   def option_for_select_filter
     options_for_select([['Movies', 'movies'], ['Genre', 'genre'], ['Actor', 'actor']])
   end
+
+  def movie_cast
+    #@movie.movie_casts.order(created_at: :asc).all.map { |cast| [cast.role.title, cast.person.name]}
+  end
 end

@@ -12,9 +12,11 @@ Rails.application.routes.draw do
 
   resources :reviews
 
-  resource :people
+  resources :people
 
   resources :watchlists
+
+  resources :profiles
 
   root 'movies#index'
 end

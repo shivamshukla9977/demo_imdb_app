@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :reviews
   has_many :watchlists
+  has_one_attached :image
 end

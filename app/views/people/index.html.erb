@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag "movies" %>
+
+<div style="margin-bottom: 7%;">
+  <div class="container">
+    <h2></h2>
+    <table class="table">
+      <thead>
+        <th>person_id</th>
+        <th>Name</th>
+        <th>dob</th>
+        <th>Gender</th>
+        <th>image</th>
+      </thead>
+
+      <tbody>
+        <% @people.order(created_at: :asc).each do |person| %>
+        <tr>
+          <td><%= person.id %></td>
+          <td><%= person.name %></td>
+          <td><%= person.dob %></td>
+          <td><%= person.gender %></td>
+          <td><%= image_tag(person.image, :style=>'width:100px;') if person.image.attached? %></td>
+          <td> <%= link_to "View", person_path(person.id) %></td>
+          <% if user_signed_in? && current_user.role == 'admin' %>
+            <td> <%= link_to "Edit", edit_person_path(person.id) %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
