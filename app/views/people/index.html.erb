@@ -23,6 +23,7 @@
           <td> <%= link_to "View", person_path(person.id) %></td>
           <% if user_signed_in? && current_user.role == 'admin' %>
             <td> <%= link_to "Edit", edit_person_path(person.id) %></td>
+            <td> <%= link_to "Delete", method: :delete %></td>
           <% end %>
         </tr>
         <% end %>

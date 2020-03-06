@@ -56,7 +56,7 @@ class MoviesController < ApplicationController
 
   def movie_params
     params.require(:movie).permit(:title, :release_date, :play_time, :language, :country, :description, :image, 
-      movie_casts_attributes: [:person_id, :role_id],
-      movie_genres_attributes: [:genre_id])
+      movie_casts_attributes: [:id, :person_id, :role_id],
+      movie_genres_attributes: [:id, :genre_id])
   end
 end

@@ -17,7 +17,7 @@
       
       <p class="description"><%= @movie.description %></p>
       
-      <h4 class="details">Cast:
+      <h4 class="details">Cast & Crew:
         <% if @movie.movie_casts.count > 0 %>
           <div style="margin: 10px;">
             <% @movie.movie_casts.order(created_at: :asc).each do |cast| %>
@@ -42,13 +42,15 @@
       </h4>
 
       <span class="details">
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user.role == 'user' %>
           <%= form_for @movie.watchlists.build do |form| %>
             <%= form.hidden_field :user_id, value: current_user.id %>
             <%= form.hidden_field :movie_id %>
             <%= form.submit "Add to Watchlist", :class => 'submit_btn' %>
             <%= link_to "Review", new_review_path(@movies), :class => 'submit_btn' %>
           <% end %>
+        <% elsif  user_signed_in? && current_user.role == 'admin' %>
+          <%= link_to "Edit", edit_movie_path(@movie), :class => 'submit_btn' %>
         <% else %>
           <%= link_to "Review", new_review_path(@movies), :class => 'submit_btn' %>
           <%= link_to "Add To Watchlist", new_user_registration_path, :class => 'submit_btn' %>

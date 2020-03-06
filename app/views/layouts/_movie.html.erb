@@ -23,10 +23,10 @@
   <div class="fields">
     <%= f.fields_for :movie_casts do |person| %>
       <%= person.label :movie_casts %>
-      <%= person.select(:person_id, option_for_select_member) %>
+      <%= person.select(:person_id, option_for_select_member(person.object.person_id)) %>
       <br><br>
       <%= person.label :roles %>
-      <%= person.select(:role_id, option_for_select_role) %>
+      <%= person.select(:role_id, option_for_select_role(person.object.role_id)) %>
       <%#= render "movie_cast", f: person %>
     <% end %>
     <%= link_to_add_row('Add', f, :movie_casts, :class => "button glyphicon") %>

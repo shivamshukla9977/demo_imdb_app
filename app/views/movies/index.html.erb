@@ -29,13 +29,16 @@
                 <td><%= link_to "Edit", edit_movie_path(movie.id)%></td>
               <%end%>
               <td>
-                <% if user_signed_in? && current_user.role == 'user' %> 
+                <% if user_signed_in? %>
+                  <% if movie.added_to_watchlist?(current_user) %> 
+                    <%= link_to "Added To Watchlist", "#" %>
+                  <% else %>
                     <%= form_for movie.watchlists.build, remote: true do |form|%>
-                    <%= form.hidden_field :user_id, value: current_user.id %>
-                    <%= form.hidden_field :movie_id %>
-                    <%= form.submit "Add to Watchlist", :id => "tag#{movie.id}", :style=>'color:#000;' %>
-                  <% end %>
-                <% elsif user_signed_in? && current_user.role == 'admin' %>
+                      <%= form.hidden_field :user_id, value: current_user.id %>
+                      <%= form.hidden_field :movie_id %>
+                      <%= form.submit "Add to Watchlist", :id => "tag#{movie.id}", :style=>'color:#000;' %>
+                    <% end %>
+                  <% end %>  
                 <% else %>
                   <%= link_to "Add To Watchlist", new_user_registration_path %>
                 <% end %>
