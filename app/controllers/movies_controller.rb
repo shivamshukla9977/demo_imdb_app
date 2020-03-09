@@ -35,6 +35,10 @@ class MoviesController < ApplicationController
     else
       @movies = Movie.search(params[:filter].downcase, params[:search].downcase)
       render :index
+      # respond_to do |format|
+      #   format.js 
+      #   format.html
+      # end  
     end
   end
 

@@ -1,51 +1,54 @@
 <%= javascript_pack_tag 'change_text' %>
 
-<%= render '/layouts/imageSlider' %>
-
-<div style="margin-bottom: 7%;">
-    <div class="container">
-      <h2></h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Title</th>
-            <th>Release_date</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <% @movies.order(created_at: :desc).each do |movie| %>
-          <tbody>
+<% if @movies.empty? %>
+  <%= render '/layouts/error' %>
+<% else %>
+  <%= render '/layouts/imageSlider' %>
+  <div style="margin-bottom: 7%;">
+      <div class="container">
+        <h2></h2>
+        <table class="table">
+          <thead>
             <tr>
-              <td><%= movie.id %></td>
-              <td style="text-transform: capitalize;"><%= movie.title %></td>
-              <td><%= movie.release_date %></td>
-              <td><%= movie.description %></td>
-              <td><%= image_tag(movie.image, :style=>'width:100px;') if movie.image.attached? %></td>
-              <td><%= link_to "View More", movie_path(movie.id) %></td>
-              <td><%= link_to "Review", new_movie_review_path(movie.id)%></td>
-              <td><%= link_to "See Reviews", movie_reviews_path(movie.id) %></td>
-              <% if user_signed_in? && current_user.role == 'admin' %>
-                <td><%= link_to "Edit", edit_movie_path(movie.id)%></td>
-              <%end%>
-              <td>
-                <% if user_signed_in? %>
-                  <% if movie.added_to_watchlist?(current_user) %> 
-                    <%= link_to "Added To Watchlist", "#" %>
-                  <% else %>
-                    <%= form_for movie.watchlists.build, remote: true do |form|%>
-                      <%= form.hidden_field :user_id, value: current_user.id %>
-                      <%= form.hidden_field :movie_id %>
-                      <%= form.submit "Add to Watchlist", :id => "tag#{movie.id}", :style=>'color:#000;' %>
-                    <% end %>
-                  <% end %>  
-                <% else %>
-                  <%= link_to "Add To Watchlist", new_user_registration_path %>
-                <% end %>
-            </td>
+              <th>Id</th>
+              <th>Title</th>
+              <th>Release_date</th>
+              <th>Description</th>
             </tr>
-          </tbody>
-        <% end %>
-      </table>
-    </div>
-</div>
+          </thead>
+          <% @movies.order(created_at: :desc).each do |movie| %>
+            <tbody id="myTable">
+              <tr>
+                <td><%= movie.id %></td>
+                <td style="text-transform: capitalize;"><%= movie.title %></td>
+                <td><%= movie.release_date %></td>
+                <td><%= movie.description %></td>
+                <td><%= image_tag(movie.image, :style=>'width:100px;') if movie.image.attached? %></td>
+                <td><%= link_to "View More", movie_path(movie.id) %></td>
+                <td><%= link_to "Review", new_movie_review_path(movie.id)%></td>
+                <td><%= link_to "See Reviews", movie_reviews_path(movie.id) %></td>
+                <% if user_signed_in? && current_user.role == 'admin' %>
+                  <td><%= link_to "Edit", edit_movie_path(movie.id)%></td>
+                <%end%>
+                <td>
+                  <% if user_signed_in? %>
+                    <% if movie.added_to_watchlist?(current_user) %> 
+                      <%= link_to "Added To Watchlist", "#", :class => 'submit' %>
+                    <% else %>
+                      <%= form_for movie.watchlists.build, remote: true do |form|%>
+                        <%= form.hidden_field :user_id, value: current_user.id %>
+                        <%= form.hidden_field :movie_id %>
+                        <%= form.submit "Add to Watchlist", :id => "tag#{movie.id}", :style=>'color:#000;' %>
+                      <% end %>
+                    <% end %>  
+                  <% else %>
+                    <%= link_to "Add To Watchlist", new_user_registration_path %>
+                  <% end %>
+              </td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
+  </div>
+<% end %>

@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'search' %>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -40,12 +42,15 @@
     <ul class="nav navbar-nav navbar-form navbar-left">
       <div class="input-group">
       <li>
-        <%= form_tag search_movies_path, method: 'get' do %>    
-          <%= select_tag(:filter, option_for_select_filter, :class => 'filter') %>
-          <%= search_field_tag :search, params[:search], placeholder: "Search Movie", :class => "input-group form-control" %>
+        <%= form_tag search_movies_path, method: 'get', remote: true do %>    
+          <%= select_tag(:filter, option_for_select_filter, :class => 'filter', :id => "filter") %>
+          <%= search_field_tag :search, params[:search], placeholder: "Search Movie", :class => "input-group form-control", :id => "search" %>
           <div class="input-group-btn">
             <%= submit_tag "Search", :class => "btn btn-default" %>
            <i class="glyphicon glyphicon-search"></i>
+          </div>
+          <div id="result_div">
+          
           </div>
         <% end %>
       </li>
@@ -53,7 +58,7 @@
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      <% if user_signed_in? && current_user.role == 'user' %>
+      <% if user_signed_in? %>
          <ul class="nav navbar-nav">
           <li class="dropdown"><a class="dropdown-toggle text" data-toggle="dropdown" href="#"><%= current_user.name %> <span class="    caret"></span></a>
             <ul class="dropdown-menu">
@@ -64,8 +69,6 @@
             </ul>
           </li>
         </ul>
-        <li><%= link_to "Signout", destroy_user_session_path, :method => :delete, :class => "glyphicon glyphicon-user" %></li>
-      <% elsif user_signed_in? && current_user.role == 'admin' %>
         <li><%= link_to "Signout", destroy_user_session_path, :method => :delete, :class => "glyphicon glyphicon-user" %></li>
       <% else %>
         <li><%= link_to "Login", new_user_session_path, :class => "glyphicon glyphicon-user" %></li>

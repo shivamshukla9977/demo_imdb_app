@@ -3,8 +3,28 @@
 <% if user_signed_in? && current_user.role == 'admin' %>
   <div class="card">
     <h1 class="title">Edit Movie</h1>
-    <%= render "/layouts/movie" %>
+    <%= render "movie" %>
   </div>
 <% else %>
   <% controller.redirect_to root_path %>
 <% end %>
+
+<script type="text/javascript">
+  $(document).on('turbolinks:load', function() {
+
+    $('form').on('click', '.remove_record', function(event) {
+      $(this).prev('input[type=hidden]').val('1');
+      $(this).closest('div').remove();
+      return event.preventDefault();
+    });
+
+    $('form').on('click', '.add_fields', function(event) {
+      var regexp, time;
+      time = new Date().getTime();
+      regexp = new RegExp($(this).data('id'), 'g');
+      $('.fields').append($(this).data('fields').replace(regexp, time));
+      return event.preventDefault();
+    });
+  });
+
+</script>
