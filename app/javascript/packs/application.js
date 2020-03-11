@@ -23,34 +23,5 @@ require("channels")
 //= require_tree .
 import "bootstrap"
 
-// $(document).on('turbolinks:load', function() {
-
-//   $('form').on('click', '.remove_record', function(event) {
-//     $(this).prev('input[type=hidden]').val('1');
-//     $(this).closest('div').remove();
-//     return event.preventDefault();
-//   });
-
-//   $('form').on('click', '.add_fields', function(event) {
-//     var regexp, time;
-//     time = new Date().getTime();
-//     regexp = new RegExp($(this).data('id'), 'g');
-//     $('.fields').append($(this).data('fields').replace(regexp, time));
-//     return event.preventDefault();
-//   });
-// });
-
-//search ajax
-$(document).ready(function() {
-  console.log(“I log to the browser’s”);
-  $('#search').change(function() { 
-      $.ajax({
-         url: "<%= search_movies_path %>",
-         data: {
-             filter: $("#filter option:selected").text(),
-             search: $("#search option:selected").text()
-         },
-         dataType: "script"
-      });
-  });
-});
+//= require("./add_new");
+//= require("./search");

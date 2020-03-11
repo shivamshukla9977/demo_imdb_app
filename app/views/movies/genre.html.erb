@@ -1,62 +1,12 @@
 <%= stylesheet_link_tag "genre" %>
+<%= javascript_pack_tag 'search' %>
 
-<div class="container">
-  <div class='row'>
-    <div class='col-md-12'>
-      <div class="carousel slide media-carousel" id="media">
-        <div class="carousel-inner">
-          <div class="item  active">
-            <div class="row">
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
-              </div>          
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
-              </div>
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
-              </div>        
-            </div>
-          </div>
-          <div class="item">
-            <div class="row">
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
-              </div>          
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
-              </div>
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
-              </div>        
-            </div>
-          </div>
-          <div class="item">
-            <div class="row">
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
-              </div>          
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
-              </div>
-              <div class="col-md-4">
-                <a class="thumbnail" href="#"><img alt="" src="http://placehold.it/150x150"></a>
-              </div>      
-            </div>
-          </div>
-        </div>
-        <a data-slide="prev" href="#media" class="left carousel-control">‹</a>
-        <a data-slide="next" href="#media" class="right carousel-control">›</a>
-      </div>                          
-    </div>
-  </div>
+<div class="container" style="margin-left: 16%;">
+  <% Genre.first(8).each do |genre|%>
+    <%= link_to "#{genre.title}", genre_movies_path, :class => "btn btn-success", :id => "#{genre.title}"  %>
+  <%end%> 
 </div>
 
-<script type="text/javascript">
-   $(document).ready(function() {
-     $('#media').carousel({
-      pause: true,
-      interval: false,
-     });
-   });
-</script>
+<div id="genre_type">
+  
+</div>

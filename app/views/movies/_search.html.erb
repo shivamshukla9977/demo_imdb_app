@@ -1,9 +1,9 @@
 <%= javascript_pack_tag 'change_text' %>
+<%= javascript_pack_tag 'search' %>
 
 <% if @movies.empty? %>
   <%= render '/layouts/error' %>
 <% else %>
-  <%= render '/layouts/imageSlider' %>
   <div style="margin-bottom: 7%;">
       <div class="container">
         <h2></h2>
@@ -13,32 +13,18 @@
               <th>Id</th>
               <th>Title</th>
               <th>Release_date</th>
-              <th>Genre</th>
               <th>Description</th>
-              <th>Poster</th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <% if user_signed_in? && current_user.role == 'admin' %>
-                <th></th>
-              <%end%>
-              <th>Add to Watchlist</th>
             </tr>
           </thead>
-          <% @movies.order(created_at: :desc).each do |movie| %>
-            <tbody id="myTable">
+          <% @movies.each do |movie| %>
+            <tbody>
               <tr>
                 <td><%= movie.id %></td>
                 <td style="text-transform: capitalize;"><%= movie.title %></td>
                 <td><%= movie.release_date %></td>
-                <td>
-                  <% movie.movie_genres.each do |movie| %>
-                    <%= movie.genre.title %>
-                  <% end %>
-                </td>
                 <td><%= movie.description %></td>
                 <td><%= image_tag(movie.image, :style=>'width:100px;') if movie.image.attached? %></td>
-                <td><%= link_to "More", movie_path(movie.id) %></td>
+                <td><%= link_to "View More", movie_path(movie.id) %></td>
                 <td><%= link_to "Review", new_movie_review_path(movie.id)%></td>
                 <td><%= link_to "See Reviews", movie_reviews_path(movie.id) %></td>
                 <% if user_signed_in? && current_user.role == 'admin' %>
@@ -47,16 +33,16 @@
                 <td>
                   <% if user_signed_in? %>
                     <% if movie.added_to_watchlist?(current_user) %> 
-                      <%= link_to '&#9989;'.html_safe, "#", :style=>'font-size:30px; margin-left: 17px;' %>
+                      <%= link_to "Added To Watchlist", "#" %>
                     <% else %>
                       <%= form_for movie.watchlists.build, remote: true do |form|%>
                         <%= form.hidden_field :user_id, value: current_user.id %>
                         <%= form.hidden_field :movie_id %>
-                        <%= form.submit '&#10010;'.html_safe, :id => "tag#{movie.id}", :style=>'color:black; font-size:30px; margin-left: 17px;' %>
+                        <%= form.submit "Add to Watchlist", :id => "tag#{movie.id}", :style=>'color:#000;' %>
                       <% end %>
                     <% end %>  
                   <% else %>
-                    <%= link_to '&#10010;'.html_safe, new_user_registration_path, :style =>'font-size:30px; margin-left: 17px;' %>
+                    <%= link_to "Add To Watchlist", new_user_registration_path %>
                   <% end %>
               </td>
               </tr>

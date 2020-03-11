@@ -8,6 +8,6 @@
 $(document).ready(function(){
   $('input[id^="tag"]').on('click', function() {
     //alert(this.id);
-    $(this).prop("value", "Added To Watchlist");
+    $(this).replaceWith("&#9989;");
   });
 });

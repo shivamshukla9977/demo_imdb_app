@@ -33,12 +33,11 @@ class MoviesController < ApplicationController
     if params[:search].blank?  
       redirect_to root_path
     else
-      @movies = Movie.search(params[:filter].downcase, params[:search].downcase)
-      render :index
-      # respond_to do |format|
-      #   format.js 
-      #   format.html
-      # end  
+      @movies = Movie.search(params[:filter].downcase, params[:search])
+      respond_to do |format|
+        format.html
+        format.js
+      end  
     end
   end
 
