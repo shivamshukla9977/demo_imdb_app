@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
   
   def index
     @movies = Movie.all
+    @genre_movies = MovieGenre.unique
   end
 
 	def new
@@ -14,7 +15,7 @@ class MoviesController < ApplicationController
 	def create
 		@movie = Movie.new(movie_params)
     if @movie.save
-      #redirect_to movies_path
+      redirect_to movies_path
     else
       render :new
     end  
@@ -39,6 +40,12 @@ class MoviesController < ApplicationController
         format.js
       end  
     end
+  end
+
+  def movies_by_genre
+    @genre_movies = MovieGenre.unique
+    @movies = Movie.all_genre_movies(params[:id])
+    render :index
   end
 
   def update

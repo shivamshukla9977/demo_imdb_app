@@ -22,13 +22,13 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
-#gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.7'
 
-#gem 'bcrypt', platforms: :ruby
+# gem 'bcrypt', platforms: :ruby
 
-#gem 'bootstrap-sass', '~> 3.3.6'
-#gem 'jquery-rails'
-#gem 'sass-rails', '>= 3.2'
+# gem 'bootstrap-sass', '~> 3.3.6'
+# gem 'jquery-rails'
+# gem 'sass-rails', '>= 3.2'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -64,3 +64,4 @@ gem "rename"
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views', '~> 1.0'
+gem 'rubocop', '~> 0.83.0', require: false

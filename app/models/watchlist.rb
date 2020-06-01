@@ -4,4 +4,6 @@ class Watchlist < ApplicationRecord
 
   scope :user_watchlist, -> (user) { where('user_id = ?', user.id) }
 
+  scope :next, ->(id) { where("id < ?", id).order(id: :desc).first(10) }
+  scope :previous, ->(id) { where("id > ?", id).order(id: :desc).last(10) }
 end

@@ -8,6 +8,6 @@
 $(document).ready(function(){
   $('input[id^="tag"]').on('click', function() {
     //alert(this.id);
-    $(this).replaceWith("&#9989;");
+    $(this).prop('value', 'Added');
   });
 });

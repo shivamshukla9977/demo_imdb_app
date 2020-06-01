@@ -1,7 +1,7 @@
 class AddImageToMovies < ActiveRecord::Migration[6.0]
   def change
-    add_column :movie, :image, :string
-    add_column :movie, :language, :string
-    add_column :movie, :country, :string
+    add_column :movies, :image, :string
+    add_column :movies, :language, :string
+    add_column :movies, :country, :string
   end
 end

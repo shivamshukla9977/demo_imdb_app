@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   resources :movies do
     collection do
       get :search
-      get :genre
+    end
+
+    member do
+      get :movies_by_genre
     end
 
     resources :reviews
@@ -15,7 +18,12 @@ Rails.application.routes.draw do
 
   resources :people
 
-  resources :watchlists
+  resources :watchlists do
+    member do
+      get :next
+      get :previous
+    end
+  end
 
   resources :profiles
 

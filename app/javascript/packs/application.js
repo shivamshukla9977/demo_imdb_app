@@ -25,3 +25,4 @@ import "bootstrap"
 
 //= require("./add_new");
 //= require("./search");
+//= require("./change_text");

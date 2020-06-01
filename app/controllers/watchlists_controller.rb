@@ -1,6 +1,6 @@
 class WatchlistsController < ApplicationController
   def index
-    @watchlists = Watchlist.all
+    @watchlists = current_user.watchlists.order(id: :desc).first(10)
   end
 
   def new
@@ -16,6 +16,16 @@ class WatchlistsController < ApplicationController
       p @watchlist.errors
       redirect_to root_path
     end
+  end
+
+  def next
+    @watchlists = current_user.watchlists.next(params[:id])
+    render :index
+  end
+
+  def previous
+    @watchlists = current_user.watchlists.previous(params[:id])
+    render :index
   end
 
   def show

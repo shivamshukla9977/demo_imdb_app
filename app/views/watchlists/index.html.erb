@@ -14,8 +14,11 @@
         </tr>
       </thead>
       <tbody>
-        <% current_user.watchlists.order(created_at: :desc).each do |watchlist| %>
+        <% @watchlists.each do |watchlist| %>
           <tr>
+            <td>
+              <%= watchlist.id %>
+            </td>
             <td>
               <%= watchlist.movie.title %>
             </td>
@@ -26,5 +29,8 @@
         <% end %>
       </tbody>
     </table>
+    <%= link_to "previous", previous_watchlist_path(@watchlists.first.id) %>
+    |
+    <%= link_to "next", next_watchlist_path(@watchlists.last.id) %>
   </div>
 <% end %>

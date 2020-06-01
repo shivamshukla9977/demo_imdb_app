@@ -6,13 +6,6 @@
       <%= link_to "imdb", root_path, :class => "navbar-brand", :style=>'color:yellow;'%>
     </div>
     <ul class="nav navbar-nav">
-       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Movies <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><%= link_to "By Genre", genre_movies_path %></li>
-          <li><a href="#">By Cast</a></li>
-          <li><a href="#">Top Rated</a></li>
-        </ul>
-      </li>
 
       <% if user_signed_in? && current_user.role == 'admin' %>
         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">+New <span class="     caret"></span></a>
@@ -29,10 +22,8 @@
       <% end %>
       
       <li>
-        <% if user_signed_in? && current_user.role == 'user' %>
+        <% if user_signed_in? %>
           <%= link_to "watchlist", watchlists_path(current_user.id)%>
-        <% elsif user_signed_in? && current_user.role == 'admin' %>
-          <%#= link_to "users", # %>
         <% else %>
           <%= link_to "+watchlist", new_user_registration_path %>
         <% end %>

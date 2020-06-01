@@ -8,10 +8,11 @@ class Movie < ApplicationRecord
 
   validates :title, length: { minimum: 2 }
 
+  scope :all_genre_movies, ->(genre) { Movie.includes(movie_genres: :genre).where("genres.id = ?", genre).references(:movie_genres, :genres) }
 
   def added_to_watchlist?(user)
     watchlists.user_watchlist(user).any?
-  end  
+  end
 
   def self.search(filter, search)
     if filter == 'actor'
